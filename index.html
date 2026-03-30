@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thomas — Reconversion IT</title>
+  <meta name="description" content="Site personnel de présentation professionnelle — reconversion vers les métiers systèmes, réseaux et sécurité." />
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg-soft:#0b1728;
+      --panel:rgba(255,255,255,0.04);
+      --panel-strong:rgba(255,255,255,0.06);
+      --border:rgba(255,255,255,0.10);
+      --text:#e5eefb;
+      --muted:#9fb0c9;
+      --cyan:#59d8ff;
+      --cyan-soft:rgba(89,216,255,0.14);
+      --blue:#77a8ff;
+      --amber:#ffbe55;
+      --green:#5dd39e;
+      --shadow:0 20px 70px rgba(0,0,0,0.35);
+      --radius-xl:28px;
+      --radius-lg:22px;
+      --radius-md:16px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(89,216,255,0.08), transparent 26%),
+        radial-gradient(circle at 80% 0%, rgba(119,168,255,0.08), transparent 22%),
+        radial-gradient(circle at 50% 100%, rgba(255,190,85,0.06), transparent 18%),
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px),
+        var(--bg);
+      background-size:auto,auto,auto,42px 42px,42px 42px,auto;
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%}
+    .container{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+
+    .mono{
+      font-family:Consolas,Menlo,Monaco,monospace;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:12px;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(16px);
+      background:rgba(7,17,31,0.75);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .topbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      min-height:72px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .brand-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:var(--cyan-soft);
+      border:1px solid rgba(89,216,255,0.25);
+      box-shadow:0 0 22px rgba(89,216,255,0.12);
+      font-weight:700;
+      color:var(--cyan);
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      font-family:Consolas, monospace;
+    }
+
+    .brand strong{
+      display:block;
+      font-size:14px;
+      font-weight:600;
+      color:var(--text);
+      margin-top:2px;
+    }
+
+    .nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+    }
+
+    .nav a{
+      color:var(--muted);
+      font-size:14px;
+      transition:.25s ease;
+    }
+
+    .nav a:hover{color:#fff}
+
+    .hero{
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+      padding:64px 0 48px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:40px;
+      align-items:center;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      border:1px solid rgba(89,216,255,0.2);
+      background:var(--cyan-soft);
+      color:#c9f4ff;
+      border-radius:999px;
+      padding:10px 16px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-family:Consolas, monospace;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 12px rgba(93,211,158,0.45);
+    }
+
+    h1{
+      font-size:clamp(40px, 6vw, 72px);
+      line-height:1.05;
+      margin:22px 0 0;
+      letter-spacing:-0.03em;
+    }
+
+    .hero-subtitle{
+      display:block;
+      color:#c6d3e6;
+      margin-top:10px;
+      font-weight:500;
+    }
+
+    .lead{
+      margin-top:28px;
+      font-size:clamp(18px, 2.2vw, 22px);
+      color:var(--muted);
+      max-width:760px;
+    }
+
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:34px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:18px;
+      font-weight:600;
+      transition:.25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:var(--cyan-soft);
+      border-color:rgba(89,216,255,0.28);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      background:rgba(89,216,255,0.19);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.05);
+      border-color:rgba(255,255,255,0.10);
+      color:var(--text);
+    }
+
+    .btn-secondary:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,0.08);
+    }
+
+    .panel{
+      position:relative;
+      border-radius:var(--radius-xl);
+      background:var(--panel);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(16px);
+    }
+
+    .panel-outline::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(89,216,255,0.35), rgba(255,255,255,0.04), rgba(255,190,85,0.18));
+      -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+    }
+
+    .cockpit{
+      padding:20px;
+    }
+
+    .cockpit-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding-bottom:16px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+      margin-bottom:16px;
+    }
+
+    .window-dots{
+      display:flex;
+      gap:8px;
+    }
+
+    .window-dots span{
+      width:10px;height:10px;border-radius:50%;
+      display:block;
+    }
+
+    .window-dots span:nth-child(1){background:var(--cyan)}
+    .window-dots span:nth-child(2){background:var(--amber)}
+    .window-dots span:nth-child(3){background:var(--green)}
+
+    .mini-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .mini-card{
+      border-radius:20px;
+      padding:16px;
+      background:rgba(255,255,255,0.035);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-card .label{
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.20em;
+      font-family:Consolas, monospace;
+    }
+
+    .mini-card .value{
+      margin-top:8px;
+      color:#fff;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .progress-card{
+      margin-top:12px;
+      padding:18px;
+      border-radius:22px;
+      background:rgba(255,255,255,0.035);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .progress-bar{
+      height:10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      overflow:hidden;
+      margin-top:16px;
+    }
+
+    .progress-fill{
+      width:62%;
+      height:100%;
+      background:linear-gradient(90deg, rgba(89,216,255,0.9), rgba(119,168,255,0.85), rgba(255,190,85,0.75));
+      border-radius:999px;
+    }
+
+    .section{
+      padding:110px 0;
+    }
+
+    .section-head{
+      max-width:850px;
+      margin-bottom:42px;
+    }
+
+    .section-head .eyebrow{
+      color:#b6eefe;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.30em;
+      font-family:Consolas, monospace;
+    }
+
+    .section-head h2{
+      font-size:clamp(30px, 4vw, 46px);
+      line-height:1.12;
+      margin:14px 0 0;
+      letter-spacing:-0.02em;
+    }
+
+    .section-head p{
+      margin-top:16px;
+      color:var(--muted);
+      font-size:18px;
+      max-width:820px;
+    }
+
+    .about-grid,
+    .contact-grid{
+      display:grid;
+      grid-template-columns:.95fr 1.05fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    .content-card{
+      padding:28px;
+    }
+
+    .content-card p{
+      color:#cad6e7;
+      margin:0;
+    }
+
+    .content-card p + p{margin-top:18px}
+
+    .info-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:22px;
+    }
+
+    .info-box{
+      background:rgba(255,255,255,0.03);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:18px;
+      padding:16px;
+    }
+
+    .info-box strong{
+      display:block;
+      color:#fff;
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-family:Consolas, monospace;
+      margin-bottom:8px;
+    }
+
+    .cards-5,
+    .cards-3,
+    .cards-2{
+      display:grid;
+      gap:18px;
+    }
+
+    .cards-5{grid-template-columns:repeat(5,1fr)}
+    .cards-3{grid-template-columns:repeat(3,1fr)}
+    .cards-2{grid-template-columns:repeat(2,1fr)}
+
+    .step-card,
+    .skill-card,
+    .project-card,
+    .road-card{
+      padding:22px;
+      border-radius:24px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      transform:translateY(0);
+      transition:transform .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .step-card:hover,
+    .skill-card:hover,
+    .project-card:hover,
+    .road-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(89,216,255,0.22);
+      background:rgba(255,255,255,0.055);
+    }
+
+    .step-card .step,
+    .project-card .step{
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.20em;
+      font-family:Consolas, monospace;
+      margin-bottom:16px;
+      display:block;
+    }
+
+    .step-card h3,
+    .skill-card h3,
+    .project-card h3,
+    .road-card h3{
+      margin:0;
+      font-size:21px;
+      line-height:1.2;
+    }
+
+    .step-card p,
+    .skill-card p,
+    .project-card p,
+    .road-card p{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .skill-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+    }
+
+    .tag{
+      display:inline-flex;
+      margin-top:10px;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.04);
+      color:#d1deef;
+      font-size:12px;
+    }
+
+    .icon-box{
+      min-width:48px;
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.04);
+      color:var(--cyan);
+      font-weight:700;
+    }
+
+    .project-card p strong{
+      color:#fff;
+      font-weight:600;
+    }
+
+    .road-card{
+      position:relative;
+      overflow:hidden;
+    }
+
+    .road-card::after{
+      content:"";
+      position:absolute;
+      top:-20px;
+      right:-20px;
+      width:100px;
+      height:100px;
+      border-radius:50%;
+      background:rgba(89,216,255,0.08);
+      filter:blur(8px);
+    }
+
+    .road-phase{
+      color:#b6eefe;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.24em;
+      font-family:Consolas, monospace;
+    }
+
+    .contact-wrap{
+      position:relative;
+      overflow:hidden;
+      padding:34px;
+    }
+
+    .contact-wrap::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top right, rgba(89,216,255,0.11), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(255,190,85,0.09), transparent 24%);
+      pointer-events:none;
+    }
+
+    .contact-card{
+      position:relative;
+      z-index:1;
+      padding:18px 20px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(7,17,31,0.42);
+      transition:.25s ease;
+    }
+
+    .contact-card:hover{
+      background:rgba(7,17,31,0.58);
+      transform:translateY(-2px);
+    }
+
+    .contact-label{
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .contact-value{
+      margin-top:8px;
+      color:#fff;
+      font-size:18px;
+      font-weight:600;
+      word-break:break-word;
+    }
+
+    .footer{
+      padding:30px 0 60px;
+      color:#7f92ad;
+      font-size:14px;
+    }
+
+    .fade-up{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+
+    .fade-up.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .cards-5,
+      .cards-3,
+      .cards-2{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .cards-5{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{display:none}
+      .hero{min-height:auto; padding:48px 0 24px}
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .cards-5,
+      .cards-3,
+      .cards-2,
+      .mini-grid,
+      .info-grid{
+        grid-template-columns:1fr;
+      }
+
+      .section{padding:84px 0}
+      .topbar-inner{min-height:64px}
+      .contact-wrap{padding:22px}
+      .content-card{padding:22px}
+      h1{font-size:42px}
+      .lead{font-size:18px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="#top" class="brand">
+        <div class="brand-badge">&gt;_</div>
+        <div>
+          <small>portfolio system</small>
+          <strong>Thomas — reconversion IT</strong>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="#apropos">À propos</a>
+        <a href="#methode">Méthode</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#trajectoire">Trajectoire</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade-up">
+          <div class="pill">
+            <span class="dot"></span>
+            progression structurée · systèmes · réseaux · sécurité
+          </div>
+
+          <h1>
+            Thomas
+            <span class="hero-subtitle">Reconversion vers les métiers systèmes, réseaux et IT</span>
+          </h1>
+
+          <p class="lead">
+            Je construis un profil technique sérieux, progressif et méthodique, centré sur le diagnostic,
+            l’infrastructure et la compréhension concrète des systèmes.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#apropos">Voir mon parcours →</a>
+            <a class="btn btn-secondary" href="#contact">Me contacter</a>
+          </div>
+        </div>
+
+        <div class="panel panel-outline cockpit fade-up">
+          <div class="cockpit-top">
+            <div>
+              <div class="mono" style="color:var(--muted)">pilot interface</div>
+              <div style="margin-top:6px;font-size:14px;color:#d9e6f8;">Vue d’ensemble du positionnement</div>
+            </div>
+            <div class="window-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-card">
+              <div class="label">Approche</div>
+              <div class="value">Progressive & concrète</div>
+            </div>
+            <div class="mini-card">
+              <div class="label">Focales</div>
+              <div class="value">Systèmes · Réseau · Diagnostic</div>
+            </div>
+            <div class="mini-card">
+              <div class="label">Style</div>
+              <div class="value">Sérieux, appliqué, structuré</div>
+            </div>
+            <div class="mini-card">
+              <div class="label">Horizon</div>
+              <div class="value">Infrastructure & sécurité</div>
+            </div>
+          </div>
+
+          <div class="progress-card">
+            <div class="mono" style="color:var(--muted)">logique de progression</div>
+            <div style="margin-top:10px;color:#cfdbeb;font-size:14px;">
+              Une montée en niveau pensée comme un système : observer, comprendre, corriger, vérifier.
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--muted);">
+              <span>fondamentaux consolidés</span>
+              <span>progression continue</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="apropos" class="section">
+      <div class="container about-grid">
+        <div class="section-head fade-up">
+          <div class="eyebrow">01 · À propos</div>
+          <h2>Une reconversion construite avec méthode</h2>
+          <p>
+            Je viens d’un parcours professionnel différent, et j’avance vers l’informatique avec une logique simple :
+            progresser sérieusement, comprendre ce que je fais et construire des bases solides avant de viser plus loin.
+          </p>
+        </div>
+
+        <div class="panel content-card fade-up">
+          <p>
+            Mon objectif est de construire un profil crédible dans les métiers systèmes, réseaux et sécurité.
+            Je travaille cette transition de manière concrète, étape par étape, en m’appuyant sur la pratique,
+            l’observation, la vérification et la régularité.
+          </p>
+          <p>
+            Ce qui m’intéresse particulièrement, ce sont les systèmes, le réseau, le diagnostic,
+            la logique d’analyse et, à long terme, la sécurité. Je ne cherche pas à donner une image
+            artificielle de niveau avancé : je préfère montrer une progression réelle, structurée et cohérente.
+          </p>
+
+          <div class="info-grid">
+            <div class="info-box">
+              <strong>Positionnement</strong>
+              Professionnel, sobre, appliqué, orienté compréhension réelle.
+            </div>
+            <div class="info-box">
+              <strong>Objectif</strong>
+              Construire un socle solide avant d’élargir le champ technique.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="methode" class="section">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div class="eyebrow">02 · Ma méthode</div>
+          <h2>Une logique de progression fondée sur le diagnostic</h2>
+          <p>
+            Je ne cherche pas seulement à accumuler des notions. Je travaille surtout une manière de raisonner :
+            observer une situation, tester proprement, comprendre, corriger puis vérifier.
+          </p>
+        </div>
+
+        <div class="cards-5">
+          <div class="step-card fade-up">
+            <span class="step">Étape 1</span>
+            <h3>Observer</h3>
+            <p>Lire le contexte, repérer les symptômes, distinguer le signal utile du bruit.</p>
+          </div>
+          <div class="step-card fade-up">
+            <span class="step">Étape 2</span>
+            <h3>Tester</h3>
+            <p>Vérifier par étapes simples, isoler le problème, comparer ce qui fonctionne et ce qui ne fonctionne pas.</p>
+          </div>
+          <div class="step-card fade-up">
+            <span class="step">Étape 3</span>
+            <h3>Comprendre</h3>
+            <p>Remonter à la logique du système : service, réseau, configuration, droits, journalisation.</p>
+          </div>
+          <div class="step-card fade-up">
+            <span class="step">Étape 4</span>
+            <h3>Corriger</h3>
+            <p>Appliquer une action ciblée, propre et mesurée, sans improvisation inutile.</p>
+          </div>
+          <div class="step-card fade-up">
+            <span class="step">Étape 5</span>
+            <h3>Vérifier</h3>
+            <p>Contrôler le résultat, valider le retour à l’état attendu et documenter ce qui a été appris.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="competences" class="section">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div class="eyebrow">03 · Compétences en construction</div>
+          <h2>Axes techniques travaillés</h2>
+          <p>
+            Cette section ne présente pas des compétences surévaluées. Elle montre les domaines que je développe
+            réellement, avec une progression assumée et une volonté de compréhension solide.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <div class="skill-card fade-up">
+            <div class="skill-top">
+              <div>
+                <h3>Linux</h3>
+                <div class="tag">En progression active</div>
+              </div>
+              <div class="icon-box">Lx</div>
+            </div>
+            <p>Commandes de base, services, permissions, arborescence, diagnostic et logique d’administration système.</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-top">
+              <div>
+                <h3>Réseau</h3>
+                <div class="tag">Base structurée</div>
+              </div>
+              <div class="icon-box">IP</div>
+            </div>
+            <p>Adressage IP, connectivité, vérifications simples, ports, services exposés et premiers réflexes de diagnostic.</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-top">
+              <div>
+                <h3>Services & processus</h3>
+                <div class="tag">Travail concret</div>
+              </div>
+              <div class="icon-box">SV</div>
+            </div>
+            <p>Compréhension progressive du fonctionnement des services, de leur état, de leur lancement et de leur rôle.</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-top">
+              <div>
+                <h3>Logs & diagnostic</h3>
+                <div class="tag">Axe fort</div>
+              </div>
+              <div class="icon-box">LG</div>
+            </div>
+            <p>Lecture de journaux, recherche d’indices, validation par tests et construction d’un raisonnement technique clair.</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-top">
+              <div>
+                <h3>Scripting / automatisation</h3>
+                <div class="tag">Montée en niveau</div>
+              </div>
+              <div class="icon-box">SC</div>
+            </div>
+            <p>Découverte progressive des automatismes utiles pour gagner en rigueur, en répétabilité et en efficacité.</p>
+          </div>
+
+          <div class="skill-card fade-up">
+            <div class="skill-top">
+              <div>
+                <h3>Sécurité</h3>
+                <div class="tag">Direction long terme</div>
+              </div>
+              <div class="icon-box">SE</div>
+            </div>
+            <p>Approche sérieuse et lucide : comprendre d’abord les systèmes, les flux et les erreurs avant d’aller plus loin.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets" class="section">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div class="eyebrow">04 · Projets & progression</div>
+          <h2>Des projets simples, mais construits pour apprendre vraiment</h2>
+          <p>
+            Même à un stade de montée en niveau, un projet peut déjà être utile et valorisant.
+            Ce qui compte ici n’est pas d’impressionner artificiellement, mais de montrer une progression réelle et structurée.
+          </p>
+        </div>
+
+        <div class="cards-2">
+          <div class="project-card fade-up">
+            <span class="step">Projet 01</span>
+            <h3>Laboratoire Linux personnel</h3>
+            <p><strong>Objectif :</strong> Construire un environnement d’apprentissage concret pour tester, casser, corriger et vérifier.</p>
+            <p><strong>Ce que j’ai travaillé :</strong> Machines virtuelles, services, accès réseau, fichiers, permissions, commandes d’administration.</p>
+            <p><strong>Ce que cela m’a appris :</strong> Développer des réflexes de diagnostic structurés et mieux comprendre le fonctionnement réel d’un système.</p>
+          </div>
+
+          <div class="project-card fade-up">
+            <span class="step">Projet 02</span>
+            <h3>Compréhension des services et processus</h3>
+            <p><strong>Objectif :</strong> Identifier comment un système exécute, surveille et relance ses composants essentiels.</p>
+            <p><strong>Ce que j’ai travaillé :</strong> État des services, processus actifs, ports ouverts, comportements attendus et incidents simples.</p>
+            <p><strong>Ce que cela m’a appris :</strong> Relier symptôme visible, service concerné, cause probable et vérification finale.</p>
+          </div>
+
+          <div class="project-card fade-up">
+            <span class="step">Projet 03</span>
+            <h3>Diagnostic réseau progressif</h3>
+            <p><strong>Objectif :</strong> Renforcer la logique d’analyse autour de la connectivité et des échanges entre machines.</p>
+            <p><strong>Ce que j’ai travaillé :</strong> Tests de communication, ports, réponses attendues, différences entre panne applicative et panne réseau.</p>
+            <p><strong>Ce que cela m’a appris :</strong> Raisonner avec méthode au lieu de multiplier les suppositions.</p>
+          </div>
+
+          <div class="project-card fade-up">
+            <span class="step">Projet 04</span>
+            <h3>Permissions et erreurs</h3>
+            <p><strong>Objectif :</strong> Mieux comprendre pourquoi un accès échoue et comment le corriger proprement.</p>
+            <p><strong>Ce que j’ai travaillé :</strong> Droits, propriétaires, groupes, accès fichiers, erreurs classiques et validation après correction.</p>
+            <p><strong>Ce que cela m’a appris :</strong> Une erreur n’est pas un blocage : c’est souvent une piste de compréhension.</p>
+          </div>
+
+          <div class="project-card fade-up">
+            <span class="step">Projet 05</span>
+            <h3>Journal d’apprentissage technique</h3>
+            <p><strong>Objectif :</strong> Capitaliser sur chaque séance pour ancrer durablement les notions utiles.</p>
+            <p><strong>Ce que j’ai travaillé :</strong> Synthèses, étapes de diagnostic, commandes, erreurs rencontrées, corrections et points à revoir.</p>
+            <p><strong>Ce que cela m’a appris :</strong> La progression devient plus solide quand elle est documentée, relue et structurée.</p>
+          </div>
+
+          <div class="project-card fade-up">
+            <span class="step">Projet 06</span>
+            <h3>Ce site comme projet concret</h3>
+            <p><strong>Objectif :</strong> Créer une vitrine professionnelle crédible qui soit aussi une réalisation personnelle.</p>
+            <p><strong>Ce que j’ai travaillé :</strong> Structure, design, lisibilité, positionnement, cohérence narrative et présentation technique.</p>
+            <p><strong>Ce que cela m’a appris :</strong> Construire un support propre est déjà une façon de démontrer méthode, exigence et sérieux.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trajectoire" class="section">
+      <div class="container">
+        <div class="section-head fade-up">
+          <div class="eyebrow">05 · Feuille de route</div>
+          <h2>Une trajectoire lucide et cohérente</h2>
+          <p>
+            La progression que je vise n’est pas une accumulation rapide de mots-clés.
+            C’est une montée en compétence structurée, orientée vers les métiers systèmes, réseaux et sécurité.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <div class="road-card fade-up">
+            <div class="road-phase">Actuellement</div>
+            <h3>Consolider les fondamentaux utiles</h3>
+            <p>Linux, réseau, services, permissions, journaux et logique de diagnostic au travers d’exercices concrets.</p>
+          </div>
+
+          <div class="road-card fade-up">
+            <div class="road-phase">Étape suivante</div>
+            <h3>Renforcer l’autonomie technique</h3>
+            <p>Mieux enchaîner les vérifications, documenter les incidents, automatiser certaines tâches simples et gagner en fluidité.</p>
+          </div>
+
+          <div class="road-card fade-up">
+            <div class="road-phase">Direction globale</div>
+            <h3>Métiers systèmes, réseaux et sécurité</h3>
+            <p>Construire un profil cohérent, fiable et technique, avec une progression lucide vers l’infrastructure et la sécurité.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="panel panel-outline contact-wrap">
+          <div class="contact-grid">
+            <div class="fade-up">
+              <div class="section-head" style="margin-bottom:0">
+                <div class="eyebrow">06 · Contact</div>
+                <h2>Échanger autour d’un parcours, d’un projet ou d’une opportunité</h2>
+                <p>
+                  Je reste ouvert aux échanges professionnels, aux retours constructifs et aux opportunités
+                  cohérentes avec ma trajectoire vers les métiers systèmes, réseaux et sécurité.
+                </p>
+              </div>
+            </div>
+
+            <div style="display:grid;gap:14px" class="fade-up">
+              <a class="contact-card" href="mailto:tomitcybsec@gmail.com">
+                <div class="contact-label">Email</div>
+                <div class="contact-value">contact@exemple.fr</div>
+              </a>
+
+              <a class="contact-card" href="#">
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value">Lien à ajouter</div>
+              </a>
+
+              <a class="contact-card" href="#">
+                <div class="contact-label">GitHub</div>
+                <div class="contact-value">Lien à ajouter</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Site personnel de présentation professionnelle — version simple HTML/CSS/JS.
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".fade-up").forEach((el) => observer.observe(el));
+  </script>
+</body>
+</html>
